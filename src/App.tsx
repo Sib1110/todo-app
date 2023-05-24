@@ -4,11 +4,11 @@ import TodoList from "./components.tsx/TodoList";
 
 function App() {
   return (
-    <>
+    <div className="flex flex-col items-center">
       <Title />
       <TodoForm />
       <TodoList />
-    </>
+    </div>
   );
 }
 

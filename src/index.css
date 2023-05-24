@@ -1,4 +1,12 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 * {
   /* font-family: "Noto Serif KR", serif; */
   font-family: "Nanum Pen Script", cursive;
+}
+
+body {
+  margin: 0;
 }
