@@ -25,8 +25,9 @@ function App() {
   };
 
   const deleteTodoHandler = (id: string) => {
-    const newTodo = todos.filter((todo) => todo.id !== id);
-    setTodos(newTodo);
+    setTodos((prev) => {
+      return prev.filter((todo) => todo.id !== id);
+    });
   };
 
   return (
