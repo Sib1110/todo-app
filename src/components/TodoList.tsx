@@ -4,9 +4,10 @@ import Toggle from "./button/Toggle";
 interface Props {
   todoData: Todo[];
   onTaskDone: (done: boolean, id: string) => void;
+  onDeleteTodo: (id: string) => void;
 }
 
-function TodoList({ todoData, onTaskDone }: Props) {
+function TodoList({ todoData, onTaskDone, onDeleteTodo }: Props) {
   return (
     <div className="flex">
       <ul>
@@ -15,7 +16,7 @@ function TodoList({ todoData, onTaskDone }: Props) {
             <li key={todo.id}>
               {todo.task}
               <Toggle todoInfo={todo} taskDone={onTaskDone} />
-              <button>delete</button>
+              <button onClick={() => onDeleteTodo(todo.id)}>delete</button>
             </li>
           );
         })}

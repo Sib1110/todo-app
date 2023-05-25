@@ -8,7 +8,7 @@ import { Todo } from "./todomodel";
 function App() {
   const [todos, setTodos] = useState<Todo[]>([]);
 
-  const todoHandler = (todo: string) => {
+  const addTodoHandler = (todo: string) => {
     setTodos((prev) => [...prev, { id: uuidv4(), task: todo, done: false }]);
   };
 
@@ -24,11 +24,20 @@ function App() {
     setTodos(newTodo);
   };
 
+  const deleteTodoHandler = (id: string) => {
+    const newTodo = todos.filter((todo) => todo.id !== id);
+    setTodos(newTodo);
+  };
+
   return (
     <div className="flex flex-col items-center">
       <Title />
-      <TodoForm onAddTodos={todoHandler} />
-      <TodoList todoData={todos} onTaskDone={taskDoneHandler} />
+      <TodoForm onAddTodos={addTodoHandler} />
+      <TodoList
+        todoData={todos}
+        onTaskDone={taskDoneHandler}
+        onDeleteTodo={deleteTodoHandler}
+      />
     </div>
   );
 }
