@@ -29,7 +29,9 @@ function TodoList({
           })}
         </ul>
       </div>
-      <button onClick={() => onDeleteAllTodos()}>초기화</button>
+      {todoData.length >= 1 && (
+        <button onClick={() => onDeleteAllTodos()}>초기화</button>
+      )}
     </>
   );
 }
