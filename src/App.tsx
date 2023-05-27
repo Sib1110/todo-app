@@ -7,7 +7,7 @@ import { Todo } from "./todomodel";
 
 function App() {
   const [todos, setTodos] = useState<Todo[]>([]);
-
+  console.log("APP");
   const addTodoHandler = (todo: string) => {
     setTodos((prev) => [...prev, { id: uuidv4(), task: todo, done: false }]);
   };
