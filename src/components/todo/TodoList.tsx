@@ -1,11 +1,12 @@
-import { Todo } from "../todomodel";
-import Toggle from "./button/Toggle";
+import { Todo } from "../../todomodel";
+import Toggle from "../button/Toggle";
 
 interface Props {
   todoData: Todo[];
   onTaskDone: (done: boolean, id: string) => void;
   onDeleteTodo: (id: string) => void;
   onDeleteAllTodos: () => void;
+  onUpdateTodo: (id: string, task: string) => void;
 }
 
 function TodoList({
@@ -13,15 +14,20 @@ function TodoList({
   onTaskDone,
   onDeleteTodo,
   onDeleteAllTodos,
+  onUpdateTodo,
 }: Props) {
   return (
     <>
-      <div className="flex">
+      <div className=" mt-5">
         <ul>
           {todoData.map((todo) => {
             return (
-              <li key={todo.id}>
-                {todo.task}
+              <li className="text-4xl mb-2 flex justify-between" key={todo.id}>
+                <input
+                  type="text"
+                  value={todo.task}
+                  onChange={(e) => onUpdateTodo(todo.id, e.target.value)}
+                />
                 <Toggle todoInfo={todo} taskDone={onTaskDone} />
                 <button onClick={() => onDeleteTodo(todo.id)}>delete</button>
               </li>
