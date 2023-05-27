@@ -10,7 +10,10 @@ function TodoForm({ onAddTodos }: Props) {
   const submitHandler = (event: React.FormEvent) => {
     event.preventDefault();
     const enteredInput = inputRef.current?.value;
-    if (enteredInput) onAddTodos(enteredInput);
+    if (enteredInput) {
+      onAddTodos(enteredInput);
+      inputRef.current.value = "";
+    }
   };
 
   return (
