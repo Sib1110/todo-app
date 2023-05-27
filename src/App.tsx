@@ -30,6 +30,10 @@ function App() {
     });
   };
 
+  const deleteAllTodosHandler = () => {
+    setTodos([]);
+  };
+
   return (
     <div className="flex flex-col items-center">
       <Title />
@@ -38,6 +42,7 @@ function App() {
         todoData={todos}
         onTaskDone={taskDoneHandler}
         onDeleteTodo={deleteTodoHandler}
+        onDeleteAllTodos={deleteAllTodosHandler}
       />
     </div>
   );
