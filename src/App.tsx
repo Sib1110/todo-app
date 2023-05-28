@@ -4,6 +4,7 @@ import Title from "./components/title/Title";
 import TodoForm from "./components/todo/TodoForm";
 import TodoList from "./components/todo/TodoList";
 import { Todo } from "./todomodel";
+import ButtonGroup from "./components/buttongroup/ButtonGroup";
 
 const DUMMY_ARRAY: Todo[] = [
   {
@@ -69,9 +70,9 @@ function App() {
         todoData={todos}
         onTaskDone={taskDoneHandler}
         onDeleteTodo={deleteTodoHandler}
-        onDeleteAllTodos={deleteAllTodosHandler}
         onUpdateTodo={updateTodoHandler}
       />
+      <ButtonGroup onDeleteAllTodos={deleteAllTodosHandler} />
     </div>
   );
 }

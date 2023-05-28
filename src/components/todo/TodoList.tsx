@@ -5,17 +5,11 @@ interface Props {
   todoData: Todo[];
   onTaskDone: (done: boolean, id: string) => void;
   onDeleteTodo: (id: string) => void;
-  onDeleteAllTodos: () => void;
+
   onUpdateTodo: (id: string, task: string) => void;
 }
 
-function TodoList({
-  todoData,
-  onTaskDone,
-  onDeleteTodo,
-  onDeleteAllTodos,
-  onUpdateTodo,
-}: Props) {
+function TodoList({ todoData, onTaskDone, onDeleteTodo, onUpdateTodo }: Props) {
   const keydownHandler = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
       e.currentTarget.blur();
@@ -42,9 +36,6 @@ function TodoList({
           })}
         </ul>
       </div>
-      {todoData.length >= 1 && (
-        <button onClick={() => onDeleteAllTodos()}>초기화</button>
-      )}
     </>
   );
 }
