@@ -16,6 +16,12 @@ function TodoList({
   onDeleteAllTodos,
   onUpdateTodo,
 }: Props) {
+  const keydownHandler = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      e.currentTarget.blur();
+    }
+  };
+
   return (
     <>
       <div className=" mt-5">
@@ -27,6 +33,7 @@ function TodoList({
                   type="text"
                   value={todo.task}
                   onChange={(e) => onUpdateTodo(todo.id, e.target.value)}
+                  onKeyDown={keydownHandler}
                 />
                 <Toggle todoInfo={todo} taskDone={onTaskDone} />
                 <button onClick={() => onDeleteTodo(todo.id)}>delete</button>
