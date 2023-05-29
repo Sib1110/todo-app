@@ -4,7 +4,7 @@ import Title from "./components/title/Title";
 import TodoForm from "./components/todo/TodoForm";
 import TodoList from "./components/todo/TodoList";
 import { Todo } from "./todomodel";
-import ButtonGroup from "./components/buttongroup/ButtonGroup";
+import ResetButton from "./components/button/ResetButton";
 
 const DUMMY_ARRAY: Todo[] = [
   {
@@ -63,7 +63,7 @@ function App() {
   };
 
   return (
-    <div className="flex flex-col items-center text-3xl">
+    <div className="flex flex-col items-center text-3x">
       <Title />
       <TodoForm onAddTodos={addTodoHandler} />
       <TodoList
@@ -72,7 +72,7 @@ function App() {
         onDeleteTodo={deleteTodoHandler}
         onUpdateTodo={updateTodoHandler}
       />
-      <ButtonGroup onDeleteAllTodos={deleteAllTodosHandler} />
+      <ResetButton onDeleteAllTodos={deleteAllTodosHandler} />
     </div>
   );
 }
