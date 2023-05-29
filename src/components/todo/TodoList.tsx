@@ -23,7 +23,9 @@ function TodoList({ todoData, onTaskDone, onDeleteTodo, onUpdateTodo }: Props) {
           return (
             <li className="text-4xl mb-2 flex gap-5" key={todo.id}>
               <input
-                className={`basis-2/3 ${todo.done ? "bg-sky-500" : ""}`}
+                className={`basis-2/3 pl-3 rounded-xl ${
+                  todo.done ? "bg-sky-500" : ""
+                }`}
                 type="text"
                 value={todo.task}
                 onChange={(e) => onUpdateTodo(todo.id, e.target.value)}
