@@ -17,20 +17,19 @@ function TodoForm({ onAddTodos }: Props) {
   };
 
   return (
-    <div className="mt-5">
-      <form className="flex text-5xl" onSubmit={submitHandler}>
+    <div className="mt-5 text-5xl">
+      <form onSubmit={submitHandler}>
         <label className="mr-3" htmlFor="userInput">
-          목록 작성
+          <input
+            className="border-2 "
+            type="text"
+            id="userInput"
+            placeholder="..."
+            ref={inputRef}
+          />
         </label>
-        <input
-          className="border-2"
-          type="text"
-          id="userInput"
-          placeholder="..."
-          ref={inputRef}
-        />
         <button className="ml-3" type="submit">
-          작성
+          목록 작성
         </button>
       </form>
     </div>

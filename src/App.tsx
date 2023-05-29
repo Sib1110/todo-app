@@ -63,7 +63,7 @@ function App() {
   };
 
   return (
-    <div className="flex flex-col items-center">
+    <div className="flex flex-col items-center text-3xl">
       <Title />
       <TodoForm onAddTodos={addTodoHandler} />
       <TodoList

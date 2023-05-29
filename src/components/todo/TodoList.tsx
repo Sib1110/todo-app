@@ -18,24 +18,25 @@ function TodoList({ todoData, onTaskDone, onDeleteTodo, onUpdateTodo }: Props) {
 
   return (
     <>
-      <div className=" mt-5">
-        <ul>
-          {todoData.map((todo) => {
-            return (
-              <li className="text-4xl mb-2 flex justify-between" key={todo.id}>
-                <input
-                  type="text"
-                  value={todo.task}
-                  onChange={(e) => onUpdateTodo(todo.id, e.target.value)}
-                  onKeyDown={keydownHandler}
-                />
+      <ul className="flex-col mt-5 w-1/2 items-center">
+        {todoData.map((todo) => {
+          return (
+            <li className="text-4xl mb-2 flex gap-5" key={todo.id}>
+              <input
+                className={`basis-2/3 ${todo.done ? "bg-sky-500" : ""}`}
+                type="text"
+                value={todo.task}
+                onChange={(e) => onUpdateTodo(todo.id, e.target.value)}
+                onKeyDown={keydownHandler}
+              />
+              <div className="basis-1/3 flex gap-3">
                 <Toggle todoInfo={todo} taskDone={onTaskDone} />
                 <button onClick={() => onDeleteTodo(todo.id)}>delete</button>
-              </li>
-            );
-          })}
-        </ul>
-      </div>
+              </div>
+            </li>
+          );
+        })}
+      </ul>
     </>
   );
 }
