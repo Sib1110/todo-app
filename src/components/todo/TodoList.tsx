@@ -1,5 +1,7 @@
 import { Todo } from "../../todomodel";
 import Toggle from "../button/Toggle";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrashCan } from "@fortawesome/free-regular-svg-icons";
 
 interface Props {
   todoData: Todo[];
@@ -31,9 +33,19 @@ function TodoList({ todoData, onTaskDone, onDeleteTodo, onUpdateTodo }: Props) {
                 onChange={(e) => onUpdateTodo(todo.id, e.target.value)}
                 onKeyDown={keydownHandler}
               />
-              <div className="basis-1/3 flex gap-3">
+              <div className="basis-1/3 flex gap-3 items-baseline">
                 <Toggle todoInfo={todo} taskDone={onTaskDone} />
-                <button onClick={() => onDeleteTodo(todo.id)}>delete</button>
+                <FontAwesomeIcon
+                  className="cursor-pointer"
+                  icon={faTrashCan}
+                  onClick={() => onDeleteTodo(todo.id)}
+                  onMouseEnter={(e) =>
+                    e.currentTarget.classList.add("text-red-500")
+                  }
+                  onMouseLeave={(e) =>
+                    e.currentTarget.classList.remove("text-red-500")
+                  }
+                />
               </div>
             </li>
           );

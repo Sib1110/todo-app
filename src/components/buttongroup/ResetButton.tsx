@@ -3,6 +3,6 @@ interface Props {
 }
 
 function Reset({ onDeleteAllTodos }: Props) {
-  return <button onClick={() => onDeleteAllTodos()}></button>;
+  return <button onClick={() => onDeleteAllTodos()}>초기화</button>;
 }
 export default Reset;
