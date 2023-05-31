@@ -7,7 +7,6 @@ interface Props {
   todoData: Todo[];
   onTaskDone: (done: boolean, id: string) => void;
   onDeleteTodo: (id: string) => void;
-
   onUpdateTodo: (id: string, task: string) => void;
 }
 

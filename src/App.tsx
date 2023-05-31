@@ -4,18 +4,19 @@ import Title from "./components/title/Title";
 import TodoForm from "./components/todo/TodoForm";
 import TodoList from "./components/todo/TodoList";
 import { Todo } from "./todomodel";
-import ResetButton from "./components/button/ResetButton";
+
+import ButtonGroup from "./components/buttongroup/ButtonGroup";
 
 const DUMMY_ARRAY: Todo[] = [
   {
     id: uuidv4(),
-    task: "초기화 버튼을 누르고 시작하세요",
+    task: "초기화 버튼을 누르고 시작하세요.",
     done: false,
     isDummy: true,
   },
   {
     id: uuidv4(),
-    task: "목록 작성에 오늘의 할 일을 입력해주세요",
+    task: "목록 작성에 오늘의 할 일을 입력해주세요.",
     done: false,
     isDummy: true,
   },
@@ -24,6 +25,7 @@ const DUMMY_ARRAY: Todo[] = [
 
 function App() {
   const [todos, setTodos] = useState<Todo[]>(DUMMY_ARRAY);
+  const [filteredTodos, setFilteredTodos] = useState<Todo[]>([]);
 
   const addTodoHandler = (todo: string) => {
     setTodos((prev) => [...prev, { id: uuidv4(), task: todo, done: false }]);
@@ -62,17 +64,30 @@ function App() {
     setTodos([]);
   };
 
+  const filterTodosHandler = (text: string) => {
+    // whitespace 제거 작업해야함
+    const enteredfilteredTodos = todos.filter((todo) =>
+      todo.task.trim().includes(text.trim())
+    );
+    if (enteredfilteredTodos.length >= 1) {
+      setFilteredTodos(enteredfilteredTodos);
+    }
+  };
+
   return (
     <div className="flex flex-col items-center text-3x">
       <Title />
       <TodoForm onAddTodos={addTodoHandler} />
       <TodoList
-        todoData={todos}
+        todoData={filteredTodos.length >= 1 ? filteredTodos : todos}
         onTaskDone={taskDoneHandler}
         onDeleteTodo={deleteTodoHandler}
         onUpdateTodo={updateTodoHandler}
       />
-      <ResetButton onDeleteAllTodos={deleteAllTodosHandler} />
+      <ButtonGroup
+        onDeleteAllTodos={deleteAllTodosHandler}
+        onFilterTodos={filterTodosHandler}
+      />
     </div>
   );
 }

@@ -20,10 +20,11 @@ function TodoForm({ onAddTodos }: Props) {
     <form className="w-full mt-5 text-center text-3xl" onSubmit={submitHandler}>
       <label className="mr-3" htmlFor="userInput">
         <input
-          className="border-2 rounded-full w-1/3 px-2.5"
+          className="border-2 rounded-full w-1/3 px-3"
           type="text"
           id="userInput"
           placeholder=" ..."
+          autoComplete="off"
           ref={inputRef}
         />
       </label>
