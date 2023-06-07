@@ -14,7 +14,7 @@ function Search({ onFilterTodos }: Props) {
   return (
     <>
       {isOpened && <Searchbox onFilterTodos={onFilterTodos} />}
-      <button onClick={showSearchBoxHandler}>Search</button>
+      <button onClick={showSearchBoxHandler}>검색</button>
     </>
   );
 }

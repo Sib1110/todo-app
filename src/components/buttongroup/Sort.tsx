@@ -1,7 +1,9 @@
-import React from "react";
+interface Props {
+  onSortTodos: () => void;
+}
 
-function Sort() {
-  return <button>Sort</button>;
+function Sort({ onSortTodos }: Props) {
+  return <button onClick={onSortTodos}>정렬</button>;
 }
 
 export default Sort;

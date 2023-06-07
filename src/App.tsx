@@ -26,6 +26,7 @@ const DUMMY_ARRAY: Todo[] = [
 function App() {
   const [todos, setTodos] = useState<Todo[]>(DUMMY_ARRAY);
   const [query, setQuery] = useState("");
+  const [sort, setSort] = useState(false);
 
   const addTodoHandler = (todo: string) => {
     setTodos((prev) => [...prev, { id: uuidv4(), task: todo, done: false }]);
@@ -64,6 +65,20 @@ function App() {
     setTodos([]);
   };
 
+  const sortTodosHandler = () => {
+    const doneTasks = todos.filter((x) => x.done === true);
+    const notDoneTasks = todos.filter((x) => x.done === false);
+    setSort(!sort);
+    if (sort === true) {
+      setTodos([...doneTasks, ...notDoneTasks]);
+    } else {
+      setTodos([...notDoneTasks, ...doneTasks]);
+    }
+  };
+
+  //Searchbox에서 포커스 잃으면 원래 리스트로 안돌아옴 해결해야함ㅠㅠ
+  // 영어는 검색 안되는 문제 있음
+  //아 짜증나 -_-
   const filterTodosHandler = (text: string) => {
     setQuery(text);
   };
@@ -82,10 +97,10 @@ function App() {
         onDeleteTodo={deleteTodoHandler}
         onUpdateTodo={updateTodoHandler}
       />
-
       <ButtonGroup
         onDeleteAllTodos={deleteAllTodosHandler}
         onFilterTodos={filterTodosHandler}
+        onSortTodos={sortTodosHandler}
       />
     </div>
   );
