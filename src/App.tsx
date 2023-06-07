@@ -25,7 +25,7 @@ const DUMMY_ARRAY: Todo[] = [
 
 function App() {
   const [todos, setTodos] = useState<Todo[]>(DUMMY_ARRAY);
-  const [filteredTodos, setFilteredTodos] = useState<Todo[]>([]);
+  const [query, setQuery] = useState("");
 
   const addTodoHandler = (todo: string) => {
     setTodos((prev) => [...prev, { id: uuidv4(), task: todo, done: false }]);
@@ -65,25 +65,24 @@ function App() {
   };
 
   const filterTodosHandler = (text: string) => {
-    // whitespace 제거 작업해야함
-    const enteredfilteredTodos = todos.filter((todo) =>
-      todo.task.trim().includes(text.trim())
-    );
-    if (enteredfilteredTodos.length >= 1) {
-      setFilteredTodos(enteredfilteredTodos);
-    }
+    setQuery(text);
   };
+
+  const todoList = todos.filter((todo) =>
+    todo.task.toLowerCase().includes(query)
+  );
 
   return (
     <div className="flex flex-col items-center text-3x">
       <Title />
       <TodoForm onAddTodos={addTodoHandler} />
       <TodoList
-        todoData={filteredTodos.length >= 1 ? filteredTodos : todos}
+        todoData={todoList}
         onTaskDone={taskDoneHandler}
         onDeleteTodo={deleteTodoHandler}
         onUpdateTodo={updateTodoHandler}
       />
+
       <ButtonGroup
         onDeleteAllTodos={deleteAllTodosHandler}
         onFilterTodos={filterTodosHandler}

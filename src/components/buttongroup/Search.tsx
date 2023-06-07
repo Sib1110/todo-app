@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import Searchbox from "./Searchbox";
 
 interface Props {
