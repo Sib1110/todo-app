@@ -1,7 +1,11 @@
 import React from "react";
 
-function Completed() {
-  return <button>Completed</button>;
+interface Props {
+  countTasks: number;
+}
+
+function Completed({ countTasks }: Props) {
+  return <div>완료한 목록 {countTasks}</div>;
 }
 
 export default Completed;

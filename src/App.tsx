@@ -20,6 +20,12 @@ const DUMMY_ARRAY: Todo[] = [
     done: false,
     isDummy: true,
   },
+  {
+    id: uuidv4(),
+    task: "작성한 목록을 클릭하시면 수정이 가능합니다.",
+    done: false,
+    isDummy: true,
+  },
   { id: uuidv4(), task: "오늘의 할 일", done: false, isDummy: true },
 ];
 
@@ -101,6 +107,7 @@ function App() {
         onDeleteAllTodos={deleteAllTodosHandler}
         onFilterTodos={filterTodosHandler}
         onSortTodos={sortTodosHandler}
+        countTasks={todos.filter((x) => x.done === true).length}
       />
     </div>
   );

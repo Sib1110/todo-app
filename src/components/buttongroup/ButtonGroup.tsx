@@ -8,14 +8,20 @@ interface Props {
   onDeleteAllTodos: () => void;
   onFilterTodos: (text: string) => void;
   onSortTodos: () => void;
+  countTasks: number;
 }
 
-function ButtonGroup({ onDeleteAllTodos, onFilterTodos, onSortTodos }: Props) {
+function ButtonGroup({
+  onDeleteAllTodos,
+  onFilterTodos,
+  onSortTodos,
+  countTasks,
+}: Props) {
   return (
     <div className="w-full flex justify-around fixed bottom-0 bg-zinc-900 text-white text-xl">
       <Search onFilterTodos={onFilterTodos} />
       <Sort onSortTodos={onSortTodos} />
-      <Completed />
+      <Completed countTasks={countTasks} />
       <Darkmode />
       <ResetButton onDeleteAllTodos={onDeleteAllTodos} />
     </div>
