@@ -9,6 +9,7 @@ interface Props {
   onFilterTodos: (text: string) => void;
   onSortTodos: () => void;
   countTasks: number;
+  onFilterDoneTodosHandler: () => void;
 }
 
 function ButtonGroup({
@@ -16,12 +17,16 @@ function ButtonGroup({
   onFilterTodos,
   onSortTodos,
   countTasks,
+  onFilterDoneTodosHandler,
 }: Props) {
   return (
     <div className="w-full flex justify-around fixed bottom-0 bg-zinc-900 text-white text-xl">
       <Search onFilterTodos={onFilterTodos} />
       <Sort onSortTodos={onSortTodos} />
-      <Completed countTasks={countTasks} />
+      <Completed
+        countTasks={countTasks}
+        onFilterDoneTodosHandler={onFilterDoneTodosHandler}
+      />
       <Darkmode />
       <ResetButton onDeleteAllTodos={onDeleteAllTodos} />
     </div>

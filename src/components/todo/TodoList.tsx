@@ -19,7 +19,7 @@ function TodoList({ todoData, onTaskDone, onDeleteTodo, onUpdateTodo }: Props) {
 
   return (
     <>
-      <ul className="flex-col mt-5 w-1/2 items-center">
+      <ul className="flex-col mt-5 w-1/2 items-center mb-14">
         {todoData.map((todo) => {
           return (
             <li className="text-4xl mb-2 flex gap-5" key={todo.id}>

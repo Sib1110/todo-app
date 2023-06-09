@@ -33,6 +33,8 @@ function App() {
   const [todos, setTodos] = useState<Todo[]>(DUMMY_ARRAY);
   const [query, setQuery] = useState("");
   const [sort, setSort] = useState(false);
+  const [clickedDone, setClickedDone] = useState(false);
+  const [filteredDoneTodos, setFilteredDoneTodos] = useState<Todo[]>([]);
 
   const addTodoHandler = (todo: string) => {
     setTodos((prev) => [...prev, { id: uuidv4(), task: todo, done: false }]);
@@ -93,12 +95,21 @@ function App() {
     todo.task.toLowerCase().includes(query)
   );
 
+  const filterDoneTodosHandler = () => {
+    setClickedDone(!clickedDone);
+    const filteredArr = todos.filter((todo) => todo.done === true);
+    setFilteredDoneTodos(filteredArr);
+    if (clickedDone === true) {
+      setFilteredDoneTodos([]);
+    }
+  };
+
   return (
     <div className="flex flex-col items-center text-3x">
       <Title />
       <TodoForm onAddTodos={addTodoHandler} />
       <TodoList
-        todoData={todoList}
+        todoData={clickedDone ? filteredDoneTodos : todoList}
         onTaskDone={taskDoneHandler}
         onDeleteTodo={deleteTodoHandler}
         onUpdateTodo={updateTodoHandler}
@@ -107,7 +118,8 @@ function App() {
         onDeleteAllTodos={deleteAllTodosHandler}
         onFilterTodos={filterTodosHandler}
         onSortTodos={sortTodosHandler}
-        countTasks={todos.filter((x) => x.done === true).length}
+        countTasks={todos.filter((todo) => todo.done === true).length}
+        onFilterDoneTodosHandler={filterDoneTodosHandler}
       />
     </div>
   );
