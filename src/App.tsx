@@ -74,8 +74,8 @@ function App() {
   };
 
   const sortTodosHandler = () => {
-    const doneTasks = todos.filter((x) => x.done === true);
-    const notDoneTasks = todos.filter((x) => x.done === false);
+    const doneTasks = todos.filter((todo) => todo.done === true);
+    const notDoneTasks = todos.filter((todo) => todo.done === false);
     setSort(!sort);
     if (sort === true) {
       setTodos([...doneTasks, ...notDoneTasks]);
@@ -84,16 +84,17 @@ function App() {
     }
   };
 
-  //Searchbox에서 포커스 잃으면 원래 리스트로 안돌아옴 해결해야함ㅠㅠ
-  // 영어는 검색 안되는 문제 있음
-  //아 짜증나 -_-
   const filterTodosHandler = (text: string) => {
     setQuery(text);
   };
 
-  const todoList = todos.filter((todo) =>
-    todo.task.toLowerCase().includes(query)
-  );
+  const todoList = todos.filter((todo) => {
+    if (query === "") {
+      return todos;
+    } else {
+      return todo.task.toLowerCase().includes(query);
+    }
+  });
 
   const filterDoneTodosHandler = () => {
     setClickedDone(!clickedDone);
