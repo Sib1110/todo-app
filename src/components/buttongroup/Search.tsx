@@ -3,9 +3,10 @@ import Searchbox from "./Searchbox";
 
 interface Props {
   onFilterTodos: (text: string) => void;
+  onClearQuery: () => void;
 }
 
-function Search({ onFilterTodos }: Props) {
+function Search({ onFilterTodos, onClearQuery }: Props) {
   const [isOpened, setIsOpened] = useState(false);
 
   const showSearchBoxHandler = () => {
@@ -13,7 +14,9 @@ function Search({ onFilterTodos }: Props) {
   };
   return (
     <>
-      {isOpened && <Searchbox onFilterTodos={onFilterTodos} />}
+      {isOpened && (
+        <Searchbox onFilterTodos={onFilterTodos} onClearQuery={onClearQuery} />
+      )}
       <button onClick={showSearchBoxHandler}>검색</button>
     </>
   );

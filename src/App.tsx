@@ -4,30 +4,9 @@ import Title from "./components/title/Title";
 import TodoForm from "./components/todo/TodoForm";
 import TodoList from "./components/todo/TodoList";
 import { Todo } from "./todomodel";
+import { DUMMY_ARRAY } from "./dummy-todos";
 
 import ButtonGroup from "./components/buttongroup/ButtonGroup";
-
-const DUMMY_ARRAY: Todo[] = [
-  {
-    id: uuidv4(),
-    task: "초기화 버튼을 누르고 시작하세요.",
-    done: false,
-    isDummy: true,
-  },
-  {
-    id: uuidv4(),
-    task: "목록 작성에 오늘의 할 일을 입력해주세요.",
-    done: false,
-    isDummy: true,
-  },
-  {
-    id: uuidv4(),
-    task: "작성한 목록을 클릭하시면 수정이 가능합니다.",
-    done: false,
-    isDummy: true,
-  },
-  { id: uuidv4(), task: "오늘의 할 일", done: false, isDummy: true },
-];
 
 function App() {
   const [todos, setTodos] = useState<Todo[]>(DUMMY_ARRAY);
@@ -88,13 +67,12 @@ function App() {
     setQuery(text);
   };
 
-  const todoList = todos.filter((todo) => {
-    if (query === "") {
-      return todos;
-    } else {
-      return todo.task.toLowerCase().includes(query);
-    }
-  });
+  const todoList =
+    query === ""
+      ? todos
+      : todos.filter((todo) => todo.task.toLowerCase().includes(query));
+
+  const clearQuery = () => setQuery("");
 
   const filterDoneTodosHandler = () => {
     setClickedDone(!clickedDone);
@@ -105,22 +83,27 @@ function App() {
     }
   };
 
+  const doneTasksCount = todos.filter((todo) => todo.done === true).length;
+
   return (
-    <div className="flex flex-col items-center text-3x">
+    <div className="flex flex-col">
       <Title />
-      <TodoForm onAddTodos={addTodoHandler} />
-      <TodoList
-        todoData={clickedDone ? filteredDoneTodos : todoList}
-        onTaskDone={taskDoneHandler}
-        onDeleteTodo={deleteTodoHandler}
-        onUpdateTodo={updateTodoHandler}
-      />
+      <main className="w-full flex flex-col items-center">
+        <TodoForm onAddTodos={addTodoHandler} />
+        <TodoList
+          todoData={clickedDone ? filteredDoneTodos : todoList}
+          onTaskDone={taskDoneHandler}
+          onDeleteTodo={deleteTodoHandler}
+          onUpdateTodo={updateTodoHandler}
+        />
+      </main>
       <ButtonGroup
         onDeleteAllTodos={deleteAllTodosHandler}
         onFilterTodos={filterTodosHandler}
         onSortTodos={sortTodosHandler}
-        countTasks={todos.filter((todo) => todo.done === true).length}
+        countTasks={doneTasksCount}
         onFilterDoneTodosHandler={filterDoneTodosHandler}
+        onClearQuery={clearQuery}
       />
     </div>
   );

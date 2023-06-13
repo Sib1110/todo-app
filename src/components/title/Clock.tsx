@@ -10,7 +10,7 @@ function Clock() {
   }, []);
 
   return (
-    <div className="flex gap-3 justify-center items-end text-slate-500 text-2xl">
+    <div className="flex gap-3 items-end text-slate-500 text-2xl">
       <span>{date.toLocaleDateString("ko-kr")}</span>
       <span>{date.toLocaleTimeString("ko-kr", { timeStyle: "short" })}</span>
     </div>
