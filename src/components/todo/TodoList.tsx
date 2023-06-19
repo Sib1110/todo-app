@@ -18,16 +18,13 @@ function TodoList({ todoData, onTaskDone, onDeleteTodo, onUpdateTodo }: Props) {
   };
 
   return (
-    <ol className="w-full flex-col">
+    <ul className="w-1/2 px-10 flex-col h-[650px] mt-3 mb-10 overflow-y-scroll ">
       {todoData.map((todo) => {
         return (
-          <li
-            className="w-full text-4xl mb-2 flex gap-5 justify-center"
-            key={todo.id}
-          >
+          <li className="text-4xl mb-2 flex gap-5 justify-center" key={todo.id}>
             <input
-              className={`basis-1/3 pl-3 rounded-xl ${
-                todo.done ? "bg-sky-500" : ""
+              className={`basis-2/3 pl-3 rounded-xl ${
+                todo.done ? "bg-sky-300" : ""
               }`}
               type="text"
               value={todo.task}
@@ -51,7 +48,7 @@ function TodoList({ todoData, onTaskDone, onDeleteTodo, onUpdateTodo }: Props) {
           </li>
         );
       })}
-    </ol>
+    </ul>
   );
 }
 

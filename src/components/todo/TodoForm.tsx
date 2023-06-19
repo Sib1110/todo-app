@@ -29,7 +29,10 @@ function TodoForm({ onAddTodos }: Props) {
             ref={inputRef}
           />
         </label>
-        <button className="ml-3" type="submit">
+        <button
+          className="ml-3 hover:border-b-2 border-slate-500"
+          type="submit"
+        >
           목록 작성
         </button>
       </form>

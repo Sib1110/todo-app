@@ -10,14 +10,15 @@ function Searchbox({ onFilterTodos, onClearQuery }: Props) {
   const [isMouseEnter, setIsMouseEnter] = useState(false);
 
   return (
-    <div className="flex absolute bottom-20 w-full justify-center gap-1">
+    <div className="flex fixed inset-x-20 bottom-20 justify-center gap-1">
       <input
-        className="bg-slate-500 w-1/2"
+        className="bg-gray-300 w-1/2 border-2 rounded-lg text-3xl text-black"
         type="text"
         onCompositionEnd={(e) => onFilterTodos(e.data)}
         autoFocus
       />
       <div
+        className="cursor-pointer self-center"
         onMouseEnter={() => setIsMouseEnter(true)}
         onMouseLeave={() => setIsMouseEnter(false)}
         onClick={onClearQuery}

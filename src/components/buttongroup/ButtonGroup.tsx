@@ -2,7 +2,7 @@ import Search from "./Search";
 import Sort from "./Sort";
 import Completed from "./Completed";
 import Darkmode from "./Darkmode";
-import ResetButton from "./ResetButton";
+import Reset from "./Reset";
 
 interface Props {
   onDeleteAllTodos: () => void;
@@ -22,7 +22,7 @@ function ButtonGroup({
   onClearQuery,
 }: Props) {
   return (
-    <div className="w-full flex justify-around fixed bottom-0 bg-zinc-900 text-white text-xl">
+    <div className="w-full flex justify-around fixed bottom-0 bg-zinc-900 text-white text-2xl">
       <Search onFilterTodos={onFilterTodos} onClearQuery={onClearQuery} />
       <Sort onSortTodos={onSortTodos} />
       <Completed
@@ -30,7 +30,7 @@ function ButtonGroup({
         onFilterDoneTodosHandler={onFilterDoneTodosHandler}
       />
       <Darkmode />
-      <ResetButton onDeleteAllTodos={onDeleteAllTodos} />
+      <Reset onDeleteAllTodos={onDeleteAllTodos} />
     </div>
   );
 }

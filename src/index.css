@@ -2,7 +2,32 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+  box-sizing: border-box;
+}
+
 body {
   font-family: "NanumJungHagSaeng", sans-serif;
   margin: 0;
+}
+
+/* Firefox */
+* {
+  scrollbar-width: auto;
+  scrollbar-color: #d1d5db transparent;
+}
+
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 15px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 5px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #d1d5db;
+  border-radius: 14px;
 }

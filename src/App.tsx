@@ -7,6 +7,7 @@ import { Todo } from "./todomodel";
 import { DUMMY_ARRAY } from "./dummy-todos";
 
 import ButtonGroup from "./components/buttongroup/ButtonGroup";
+import EmptyList from "./components/todo/EmptyList";
 
 function App() {
   const [todos, setTodos] = useState<Todo[]>(DUMMY_ARRAY);
@@ -74,6 +75,8 @@ function App() {
 
   const clearQuery = () => setQuery("");
 
+  const doneTasksCount = todos.filter((todo) => todo.done === true).length;
+
   const filterDoneTodosHandler = () => {
     setClickedDone(!clickedDone);
     const filteredArr = todos.filter((todo) => todo.done === true);
@@ -83,19 +86,21 @@ function App() {
     }
   };
 
-  const doneTasksCount = todos.filter((todo) => todo.done === true).length;
-
   return (
-    <div className="flex flex-col">
-      <Title />
-      <main className="w-full flex flex-col items-center">
+    <div className="w-full flex flex-col">
+      <Title countDoneTodos={doneTasksCount} />
+      <main className="w-full flex flex-col items-center mt-5">
         <TodoForm onAddTodos={addTodoHandler} />
-        <TodoList
-          todoData={clickedDone ? filteredDoneTodos : todoList}
-          onTaskDone={taskDoneHandler}
-          onDeleteTodo={deleteTodoHandler}
-          onUpdateTodo={updateTodoHandler}
-        />
+        {todos.length >= 1 ? (
+          <TodoList
+            todoData={clickedDone ? filteredDoneTodos : todoList}
+            onTaskDone={taskDoneHandler}
+            onDeleteTodo={deleteTodoHandler}
+            onUpdateTodo={updateTodoHandler}
+          />
+        ) : (
+          <EmptyList />
+        )}
       </main>
       <ButtonGroup
         onDeleteAllTodos={deleteAllTodosHandler}

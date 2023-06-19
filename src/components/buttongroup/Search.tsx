@@ -13,12 +13,17 @@ function Search({ onFilterTodos, onClearQuery }: Props) {
     setIsOpened(!isOpened);
   };
   return (
-    <>
+    <div className="py-1">
       {isOpened && (
         <Searchbox onFilterTodos={onFilterTodos} onClearQuery={onClearQuery} />
       )}
-      <button onClick={showSearchBoxHandler}>검색</button>
-    </>
+      <button
+        className="hover:bg-red-500 py-1 px-5 border-dotted rounded-full"
+        onClick={showSearchBoxHandler}
+      >
+        검색
+      </button>
+    </div>
   );
 }
 
