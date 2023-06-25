@@ -87,9 +87,9 @@ function App() {
   };
 
   return (
-    <div className="w-full flex flex-col">
+    <div className="w-full h-full flex flex-col bg-gradient-to-br from-white via-[#ECF8F9] to-white">
       <Title countDoneTodos={doneTasksCount} />
-      <main className="w-full flex flex-col items-center mt-5">
+      <main className="w-full flex flex-col items-center mt-1  ">
         <TodoForm onAddTodos={addTodoHandler} />
         {todos.length >= 1 ? (
           <TodoList

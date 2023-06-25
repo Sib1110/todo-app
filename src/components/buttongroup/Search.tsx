@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Searchbox from "./Searchbox";
+import Button from "../button/Button";
 
 interface Props {
   onFilterTodos: (text: string) => void;
@@ -13,7 +14,7 @@ function Search({ onFilterTodos, onClearQuery }: Props) {
     setIsOpened(!isOpened);
   };
   return (
-    <div className="py-1 basis-1/5 text-center">
+    <Button>
       {isOpened && (
         <Searchbox onFilterTodos={onFilterTodos} onClearQuery={onClearQuery} />
       )}
@@ -23,7 +24,7 @@ function Search({ onFilterTodos, onClearQuery }: Props) {
       >
         검색
       </button>
-    </div>
+    </Button>
   );
 }
 

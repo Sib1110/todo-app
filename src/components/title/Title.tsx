@@ -12,8 +12,8 @@ function Title({ countDoneTodos }: Props) {
   };
 
   return (
-    <header className="flex w-full mt-5 gap-4 justify-center">
-      <h1 className="text-9xl">
+    <header className="flex flex-col w-full mt-3 gap-2 items-center">
+      <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-9xl">
         <span className={changeTilteColor(2, "text-yellow-500")}>오</span>
         <span className={changeTilteColor(4, "text-green-500")}>늘</span>
         <span>의</span>

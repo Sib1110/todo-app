@@ -17,11 +17,11 @@ function TodoForm({ onAddTodos }: Props) {
   };
 
   return (
-    <div className="w-full text-center text-4xl my-2">
+    <div className="w-full md:w-2/3 text-center mt-1 text-lg">
       <form onSubmit={submitHandler}>
         <label className="mr-3" htmlFor="userInput">
           <input
-            className="border-2 rounded-full pl-5 w-1/3"
+            className="border-2 rounded-full px-2 w-2/3 py-1 text-sm md:text-lg"
             type="text"
             id="userInput"
             placeholder=" ..."
@@ -30,7 +30,7 @@ function TodoForm({ onAddTodos }: Props) {
           />
         </label>
         <button
-          className="ml-3 hover:border-b-2 border-slate-500"
+          className="hover:border-b-2 border-slate-500 md:text-3xl"
           type="submit"
         >
           목록 작성
