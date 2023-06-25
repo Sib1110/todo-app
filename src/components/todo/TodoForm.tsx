@@ -17,7 +17,7 @@ function TodoForm({ onAddTodos }: Props) {
   };
 
   return (
-    <div className="w-full md:w-2/3 text-center mt-1 text-lg">
+    <div className="w-full  text-center mt-1 text-lg lg:w-2/3">
       <form onSubmit={submitHandler}>
         <label className="mr-3" htmlFor="userInput">
           <input

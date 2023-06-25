@@ -18,7 +18,7 @@ function TodoList({ todoData, onTaskDone, onDeleteTodo, onUpdateTodo }: Props) {
   };
 
   return (
-    <ul className="w-full pl-3 pr-1 text-lg md:w-2/3 md:px-10 md:text-4xl flex-col h-[650px] mt-3 mb-10 overflow-y-scroll">
+    <ul className="w-full h-screen pl-3 pr-1 text-lg lg:w-2/3 md:px-10 md:text-4xl flex-col mt-3 mb-10 overflow-y-scroll">
       {todoData.map((todo) => {
         return (
           <li
