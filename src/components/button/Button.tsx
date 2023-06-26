@@ -2,13 +2,17 @@ import React from "react";
 
 interface Props {
   children: React.ReactNode;
+  onClickHandler?: () => void;
 }
 
-function Button({ children }: Props) {
+function Button({ children, onClickHandler }: Props) {
   return (
-    <div className="pt-1 basis-1/5 text-center border-b-2 border-solid border-[#d1d5db] md:border-0">
+    <button
+      className="pt-1 basis-1/5 border-2 border-solid border-[#d1d5db] hover:border-sky-500 bg-white py-1 px-5 rounded-full"
+      onClick={onClickHandler}
+    >
       {children}
-    </div>
+    </button>
   );
 }
 

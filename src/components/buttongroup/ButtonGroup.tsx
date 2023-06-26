@@ -22,7 +22,7 @@ function ButtonGroup({
   onClearQuery,
 }: Props) {
   return (
-    <div className="flex-col fixed bottom-0 w-full md:flex md:flex-row  bg-zinc-900 text-white text-sm md:text-3xl">
+    <div className="flex flex-col fixed bottom-0 w-full px-1 pb-1 md:flex md:flex-row text-black text-lg md:text-3xl">
       <Search onFilterTodos={onFilterTodos} onClearQuery={onClearQuery} />
       <Sort onSortTodos={onSortTodos} />
       <Completed

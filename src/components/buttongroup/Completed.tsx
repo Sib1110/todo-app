@@ -7,13 +7,10 @@ interface Props {
 
 function Completed({ countTasks, onFilterDoneTodosHandler }: Props) {
   return (
-    <Button>
-      <div className="hover:bg-red-500 my-1 px-5 rounded-full justify-center basis-1/5 flex items-center gap-2">
-        <div key={countTasks} className="animate-bump">
-          <button onClick={onFilterDoneTodosHandler}>
-            완료한 목록 {countTasks}
-          </button>
-        </div>
+    <Button onClickHandler={onFilterDoneTodosHandler}>
+      <div className="flex flex-row justify-center gap-1">
+        <span>완료한 목록</span>
+        <span className="px-4 w-11 bg-red-400 rounded-full">{countTasks}</span>
       </div>
     </Button>
   );

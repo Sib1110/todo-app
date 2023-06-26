@@ -5,15 +5,6 @@ interface Props {
 }
 
 function Reset({ onDeleteAllTodos }: Props) {
-  return (
-    <Button>
-      <button
-        className="hover:bg-red-800 py-1 px-5  rounded-full"
-        onClick={() => onDeleteAllTodos()}
-      >
-        초기화
-      </button>
-    </Button>
-  );
+  return <Button onClickHandler={() => onDeleteAllTodos()}>초기화</Button>;
 }
 export default Reset;
