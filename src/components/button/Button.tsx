@@ -9,7 +9,7 @@ interface Props {
 function Button({ children, onClickHandler, bgColor }: Props) {
   const btnClassName = `pt-1 basis-1/5 border-2 border-solid border-[#d1d5db] dark:border-slate-200 hover:border-sky-500 ${
     bgColor ?? "bg-white"
-  } dark:bg-black py-1 px-5 rounded-full`;
+  } dark:bg-black py-1 px-1 rounded-full`;
 
   return (
     <button className={btnClassName} onClick={onClickHandler}>

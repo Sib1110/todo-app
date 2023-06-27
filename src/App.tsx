@@ -15,7 +15,6 @@ function App() {
   const [sort, setSort] = useState(false);
   const [clickedDone, setClickedDone] = useState(false);
   const [filteredDoneTodos, setFilteredDoneTodos] = useState<Todo[]>([]);
-  const [isDarkmodeOn, setIsDarkmodeOn] = useState(false);
 
   const addTodoHandler = (todo: string) => {
     setTodos((prev) => [...prev, { id: uuidv4(), task: todo, done: false }]);
@@ -87,16 +86,8 @@ function App() {
     }
   };
 
-  const switchDarkmode = () => {
-    setIsDarkmodeOn((prev) => !prev);
-  };
-
   return (
-    <div
-      className={` ${
-        isDarkmodeOn ? "dark bg-[#0f172a]" : ""
-      } w-full h-full flex flex-col bg-[#ECF8F9]`}
-    >
+    <div className="w-full h-screen flex flex-col">
       <Title countDoneTodos={doneTasksCount} />
       <main className="w-full flex flex-col items-center mt-1  ">
         <TodoForm onAddTodos={addTodoHandler} />
@@ -118,8 +109,6 @@ function App() {
         countTasks={doneTasksCount}
         onFilterDoneTodosHandler={filterDoneTodosHandler}
         onClearQuery={clearQuery}
-        onDarkmode={switchDarkmode}
-        darkmodeOpen={isDarkmodeOn}
       />
     </div>
   );
