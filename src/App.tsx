@@ -89,7 +89,7 @@ function App() {
   return (
     <div className="w-full h-screen flex flex-col">
       <Title countDoneTodos={doneTasksCount} />
-      <main className="w-full flex flex-col items-center mt-1  ">
+      <main className="w-full flex flex-col items-center mt-1 mb-5 overflow-scroll">
         <TodoForm onAddTodos={addTodoHandler} />
         {todos.length >= 1 ? (
           <TodoList
