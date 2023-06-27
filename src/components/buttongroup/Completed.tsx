@@ -10,7 +10,12 @@ function Completed({ countTasks, onFilterDoneTodosHandler }: Props) {
     <Button onClickHandler={onFilterDoneTodosHandler}>
       <div className="flex flex-row justify-center gap-1">
         <span>완료한 목록</span>
-        <span className="px-4 w-11 bg-red-400 rounded-full">{countTasks}</span>
+        <div
+          key={countTasks}
+          className="w-10 bg-red-300 rounded-full animate-bump"
+        >
+          {countTasks}
+        </div>
       </div>
     </Button>
   );

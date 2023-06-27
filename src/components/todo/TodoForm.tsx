@@ -21,7 +21,7 @@ function TodoForm({ onAddTodos }: Props) {
       <form onSubmit={submitHandler}>
         <label className="mr-3" htmlFor="userInput">
           <input
-            className="border-2 rounded-full px-2 w-2/3 py-1 text-sm md:text-lg"
+            className="border-2 rounded-full pl-5 px-2 w-2/3 py-1 text-sm md:text-3xl"
             type="text"
             id="userInput"
             placeholder=" ..."
@@ -30,7 +30,7 @@ function TodoForm({ onAddTodos }: Props) {
           />
         </label>
         <button
-          className="hover:border-b-2 border-slate-500 md:text-3xl"
+          className="hover:border-b-2 border-slate-500 md:text-3xl dark:text-slate-200"
           type="submit"
         >
           목록 작성

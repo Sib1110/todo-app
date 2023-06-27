@@ -34,7 +34,7 @@ function TodoList({ todoData, onTaskDone, onDeleteTodo, onUpdateTodo }: Props) {
               onChange={(e) => onUpdateTodo(todo.id, e.target.value)}
               onKeyDown={keydownHandler}
             />
-            <div className="flex items-end gap-1 md:items-baseline md:gap-3 text-lg md:text-4xl">
+            <div className="flex items-end gap-1 md:items-baseline md:gap-3 text-lg md:text-4xl dark:text-white">
               <Toggle todoInfo={todo} taskDone={onTaskDone} />
               <FontAwesomeIcon
                 className="cursor-pointer"

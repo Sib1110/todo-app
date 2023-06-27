@@ -12,7 +12,7 @@ function Searchbox({ onFilterTodos, onClearQuery }: Props) {
   return (
     <div className="flex absolute justify-center -top-12 text-2xl md:text-3xl md:-top-[55px]  w-full pl-3 pr-1 md:justify-start md:ml-3 gap-1 md:h-full lg:w-1/2  md:bottom-20">
       <input
-        className="bg-gray-300 pl-1 w-full md:w-2/3 border-2 rounded-lg  text-black"
+        className="bg-slate-200 pl-1 w-full md:w-2/3 border-2 border-black rounded-lg"
         type="text"
         onCompositionEnd={(e) => onFilterTodos(e.data)}
         placeholder=" 2자 이상의 검색어를 입력해 주세요."
@@ -25,7 +25,7 @@ function Searchbox({ onFilterTodos, onClearQuery }: Props) {
         onClick={onClearQuery}
       >
         <FontAwesomeIcon
-          className="text-black"
+          className="text-black dark:text-slate-200"
           icon={faRotateLeft}
           spin={isMouseEnter ? true : false}
           spinReverse
