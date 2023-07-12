@@ -17,36 +17,28 @@ function App() {
   const [filteredDoneTodos, setFilteredDoneTodos] = useState<Todo[]>([]);
 
   const addTodoHandler = (todo: string) => {
-    setTodos((prev) => [...prev, { id: uuidv4(), task: todo, done: false }]);
+    const newTodo = { id: uuidv4(), task: todo, done: false };
+    setTodos((prevTodos) => [...prevTodos, newTodo]);
   };
 
   const taskDoneHandler = (done: boolean, id: string) => {
-    const newTodo = todos.map((todo) => {
-      if (todo.id === id) {
-        return { ...todo, done };
-      } else {
-        return todo;
-      }
-    });
+    const updatedTodos = todos.map((todo) =>
+      todo.id === id ? { ...todo, done } : todo
+    );
 
-    setTodos(newTodo);
+    setTodos(updatedTodos);
   };
 
   const deleteTodoHandler = (id: string) => {
-    setTodos((prev) => {
-      return prev.filter((todo) => todo.id !== id);
-    });
+    const updatedTodos = todos.filter((todo) => todo.id !== id);
+    setTodos(updatedTodos);
   };
 
   const updateTodoHandler = (id: string, task: string) => {
-    const updatedTodo = todos.map((todo) => {
-      if (todo.id === id) {
-        return { ...todo, task };
-      } else {
-        return todo;
-      }
-    });
-    setTodos(updatedTodo);
+    const updatedTodos = todos.map((todo) =>
+      todo.id === id ? { ...todo, task } : todo
+    );
+    setTodos(updatedTodos);
   };
 
   const deleteAllTodosHandler = () => {
@@ -56,33 +48,31 @@ function App() {
   const sortTodosHandler = () => {
     const doneTasks = todos.filter((todo) => todo.done === true);
     const notDoneTasks = todos.filter((todo) => todo.done === false);
-    setSort(!sort);
-    if (sort === true) {
-      setTodos([...doneTasks, ...notDoneTasks]);
-    } else {
-      setTodos([...notDoneTasks, ...doneTasks]);
-    }
+
+    setSort((prevSort) => !prevSort);
+    sort
+      ? setTodos([...doneTasks, ...notDoneTasks])
+      : setTodos([...notDoneTasks, ...doneTasks]);
   };
 
   const filterTodosHandler = (text: string) => {
     setQuery(text);
   };
 
-  const todoList =
-    query === ""
-      ? todos
-      : todos.filter((todo) => todo.task.toLowerCase().includes(query));
+  const todoList = query
+    ? todos.filter((todo) => todo.task.toLowerCase().includes(query))
+    : todos;
 
   const clearQuery = () => setQuery("");
 
-  const doneTasksCount = todos.filter((todo) => todo.done === true).length;
-
+  const doneTasksCount = todos.filter((todo) => todo.done).length;
   const filterDoneTodosHandler = () => {
-    setClickedDone(!clickedDone);
-    const filteredArr = todos.filter((todo) => todo.done === true);
-    setFilteredDoneTodos(filteredArr);
-    if (clickedDone === true) {
+    setClickedDone((prevClickedDone) => !prevClickedDone);
+    if (clickedDone) {
       setFilteredDoneTodos([]);
+    } else {
+      const filteredArr = todos.filter((todo) => todo.done);
+      setFilteredDoneTodos(filteredArr);
     }
   };
 

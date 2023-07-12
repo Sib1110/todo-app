@@ -12,7 +12,7 @@ function Completed({ countTasks, onFilterDoneTodosHandler }: Props) {
         <span>완료한 목록</span>
         <div
           key={countTasks}
-          className="w-10 bg-red-300 rounded-full animate-bump"
+          className="w-10 bg-sky-200 rounded-full animate-bump"
         >
           {countTasks}
         </div>
