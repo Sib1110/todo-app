@@ -1,4 +1,4 @@
-import { Todo } from "./todomodel";
+import { Todo } from "./types";
 import { v4 as uuidv4 } from "uuid";
 
 export const DUMMY_ARRAY: Todo[] = [

@@ -1,23 +1,41 @@
 import { v4 as uuidv4 } from "uuid";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Title from "./components/title/Title";
 import TodoForm from "./components/todo/TodoForm";
 import TodoList from "./components/todo/TodoList";
-import { Todo } from "./todomodel";
-import { DUMMY_ARRAY } from "./dummy-todos";
+import { Todo } from "./types";
+
+import { instance } from "./api/axios";
 
 import ButtonGroup from "./components/buttongroup/ButtonGroup";
 import EmptyList from "./components/todo/EmptyList";
 
 function App() {
-  const [todos, setTodos] = useState<Todo[]>(DUMMY_ARRAY);
+  const [todos, setTodos] = useState<Todo[]>([]);
   const [query, setQuery] = useState("");
   const [sort, setSort] = useState(false);
   const [clickedDone, setClickedDone] = useState(false);
   const [filteredDoneTodos, setFilteredDoneTodos] = useState<Todo[]>([]);
 
+  useEffect(() => {
+    const fetchTodos = async () => {
+      const { data } = await instance.get("/");
+      setTodos(data);
+    };
+    fetchTodos();
+  }, []);
+
   const addTodoHandler = (todo: string) => {
-    const newTodo = { id: uuidv4(), task: todo, done: false };
+    const newTodo = {
+      id: uuidv4(),
+      task: todo,
+      done: false,
+    };
+
+    const addnewTodo = async () => {
+      await instance.put("/", [...todos, newTodo]);
+    };
+    addnewTodo();
     setTodos((prevTodos) => [...prevTodos, newTodo]);
   };
 
@@ -31,6 +49,10 @@ function App() {
 
   const deleteTodoHandler = (id: string) => {
     const updatedTodos = todos.filter((todo) => todo.id !== id);
+    const deleteTodo = async () => {
+      await instance.put("/", updatedTodos);
+    };
+    deleteTodo();
     setTodos(updatedTodos);
   };
 
@@ -42,6 +64,10 @@ function App() {
   };
 
   const deleteAllTodosHandler = () => {
+    const deleteAllTodos = async () => {
+      await instance.delete("/");
+    };
+    deleteAllTodos();
     setTodos([]);
   };
 
@@ -77,9 +103,9 @@ function App() {
   };
 
   return (
-    <div className="w-full h-screen flex flex-col">
+    <main className="w-full h-screen flex flex-col">
       <Title countDoneTodos={doneTasksCount} />
-      <main className="w-full flex flex-col items-center mt-1 mb-5 overflow-scroll">
+      <div className="w-full flex flex-col items-center mt-1 mb-5 overflow-scroll">
         <TodoForm onAddTodos={addTodoHandler} />
         {todos.length >= 1 ? (
           <TodoList
@@ -91,7 +117,7 @@ function App() {
         ) : (
           <EmptyList />
         )}
-      </main>
+      </div>
       <ButtonGroup
         onDeleteAllTodos={deleteAllTodosHandler}
         onFilterTodos={filterTodosHandler}
@@ -100,7 +126,7 @@ function App() {
         onFilterDoneTodosHandler={filterDoneTodosHandler}
         onClearQuery={clearQuery}
       />
-    </div>
+    </main>
   );
 }
 

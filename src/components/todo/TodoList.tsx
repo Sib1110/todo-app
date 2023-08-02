@@ -1,4 +1,4 @@
-import { Todo } from "../../todomodel";
+import { Todo } from "../../types";
 import Toggle from "../button/Toggle";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashCan } from "@fortawesome/free-regular-svg-icons";
